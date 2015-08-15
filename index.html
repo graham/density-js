@@ -1,14 +1,17 @@
 <!doctype html>
 <html>
   <head>
+    <script src='https://code.jquery.com/jquery-migrate-1.2.1.min.js'> </script>
+    <script src='density.js'> </script>
+    
     <script>
-      var myfun = function() {
-         alert('hello world');
-      }
+     $(document).ready(function() {
+         $("#home").html("ready!");
+     });
     </script>
   </head>
   <body>
     <h1>Hello World</h1>
-    <a href='#' onclick='myfun()'>Boom</a>
+    <div id='home'>loading..</div>
   </body>
 </html>
