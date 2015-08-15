@@ -16,7 +16,7 @@ $(document).ready(function() {
     });
 
     env = genie.main_environment;
-    env.create_template('business_card', document.getElementById('business_show_card_2').innerText);
+    env.create_template('business_card', $("#business_show_card_2").text());
     
     $("#home").html("Ready!");
 });
