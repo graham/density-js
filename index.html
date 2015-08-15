@@ -3,43 +3,51 @@
   <head>
     <script src='https://code.jquery.com/jquery-2.1.4.min.js'> </script>
     <script src='density.js'> </script>
+    <script src='app.js'></script>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link href='https://pulled.site44.com/static/fonts/Raleway.css' rel='stylesheet' type='text/css'>
+
     
-    <script>
-     var api = null;
-     var locations = {};
-     
-     $(document).ready(function() {
-         api = new Density();
-
-         console.log("lets start by listing the locations.")
-         api.locations().done(function(request) {
-             for(var i = 0; i < request.content.length; i++) {
-                 var obj = request.content[i];
-                 locations[obj.name] = obj;
-             }
-
-             update_list();
-         });
-         
-         $("#home").html("Ready!");
-     });
-
-     var update_list = function() {
-         $("#list").html('');
-         for(var key in locations) {
-             var obj = locations[key];
-
-             var d = document.createElement('div');
-             d.innerHTML = "Name: " + obj.name + " People: " + obj.current_count;
-
-             $("#list").append(d);
-         }
-     };
-    </script>
   </head>
   <body>
-    <h1>Hello World</h1>
-    <div id='home'>loading..</div>
-    <div id='list'>loading..</div>    
+    <center>
+      <h1 style='font-family:"Raleway";'>Density-JS Demo</h1><br>
+    </center>
+
+    <div id='list'>...</div>
+    <script src='https://genie.site44.com/genie.js'> </script>
+
+    <script type='template/genie' id='business_show_card_1'>
+
+     [^ expose ["obj"] ^]
+      <div class='business-box' style='background-image: url([[obj.image_url]]); background-size: auto 200px;'>
+
+       <div class='b-count'>
+         [[ obj.current_count ]]
+       </div>
+
+       <div class='b-name'>
+         [[ obj.name ]]
+       </div>
+
+     </div>
+    </script>
+    <script type='template/genie' id='business_show_card_2'>
+
+     [^ expose ["obj"] ^]
+      <div class='business-box'>
+        <div class='b-img'>
+          <img src='[[obj.image_url]]'>
+     
+          <div class='b-count'>
+            [[ obj.current_count ]]
+          </div>
+        
+          <div class='b-name'>
+            [[ obj.name ]]
+          </div>
+        </div>
+      </div>
+    </script>
   </body>
 </html>

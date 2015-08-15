@@ -1,0 +1,68 @@
+/* general 128px; */
+
+.business-box {
+    width: 192px;
+    height: 192px;
+    overflow: hidden;
+    margin: 6px;
+    float:left;
+
+    border-radius: 10px;
+
+    /* Prevent background color leak outs */
+    -webkit-background-clip: padding-box;
+    -moz-background-clip:    padding;
+    background-clip:         padding-box;
+
+    background-color: black;
+    font-family: "Raleway";
+}
+
+.business-box > .b-img {
+    position: relative;
+}
+
+.business-box > .b-img > img {
+    height: 200px;
+    -webkit-filter:brightness(40%);
+    -moz-filter:brightness(40%);
+    filter: url(#brightness); /* required for FF */
+    filter:brightness(40%);
+}
+
+.business-box > .b-img > .b-name {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    text-align: center;
+    left: 0px;
+    color: rgba(200, 200, 200, 0.9);
+}
+
+.business-box > .b-img > .b-count {
+    position: absolute;
+    bottom: 40px;
+    text-align: center;
+    top: 20px;
+    left: 0px;
+    width: 100%;
+    font-size: 100px;
+    color: rgba(222, 222, 222, 0.8);
+}
+
+.business-box:hover > .b-img > img {
+    height: 200px;
+    -webkit-filter:brightness(50%);
+    -moz-filter:brightness(50%);
+    filter: url(#brightness); /* required for FF */
+    filter:brightness(50%);
+}
+
+.business-box:hover > .b-img > .b-count {
+    color: rgba(222, 222, 222, 1.0);
+}
+
+#list {
+    width: 80%;
+    margin:auto;
+}
