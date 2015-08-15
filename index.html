@@ -5,13 +5,41 @@
     <script src='density.js'> </script>
     
     <script>
+     var api = null;
+     var locations = {};
+     
      $(document).ready(function() {
-         $("#home").html("ready!");
+         api = new Density();
+
+         console.log("lets start by listing the locations.")
+         api.locations().done(function(request) {
+             for(var i = 0; i < request.content.length; i++) {
+                 var obj = request.content[i];
+                 locations[obj.name] = obj;
+             }
+
+             update_list();
+         });
+         
+         $("#home").html("Ready!");
      });
+
+     var update_list = function() {
+         $("#list").html('');
+         for(var key in locations) {
+             var obj = locations[key];
+
+             var d = document.createElement('div');
+             d.innerHTML = "Name: " + obj.name + " People: " + obj.current_count;
+
+             $("#list").append(d);
+         }
+     };
     </script>
   </head>
   <body>
     <h1>Hello World</h1>
     <div id='home'>loading..</div>
+    <div id='list'>loading..</div>    
   </body>
 </html>

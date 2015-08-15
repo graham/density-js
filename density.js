@@ -8,9 +8,10 @@ var Density = (function() {
     DensityResponse.prototype.done = function(callback) {
         var _this = this;
         this.response_obj.done(function(thedata) {
-            this.content = thedata;
+            _this.content = thedata;
             callback(_this, thedata);
         });
+        return this;
     };
 
     DensityResponse.prototype.next = function() {
@@ -30,6 +31,9 @@ var Density = (function() {
     };
 
     var DensityAPI = function(options) {
+        if (options == undefined) {
+            options = {};
+        }
         this.server = 'https://sandbox.density.io';
         this.api_token = options['token'] || '86f319e3c566f2db32d77f00f89dc1f4fe91926d';
     };
@@ -68,5 +72,5 @@ var Density = (function() {
         return this._fetch_url('/v1/locations/' + location_id + '/events/', options);
     };
 
-    return {'DensityAPI':DensityAPI};
+    return DensityAPI;
 })();
