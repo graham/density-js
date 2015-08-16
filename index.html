@@ -2,12 +2,12 @@
 <html>
   <head>
     <script src='https://code.jquery.com/jquery-2.1.4.min.js'> </script>
+    <script src='Chart.js'></script>    
     <script src='density.js'> </script>
     <script src='app.js'></script>
     <link rel="stylesheet" type="text/css" href="main.css" />
     <link href='https://pulled.site44.com/static/fonts/Raleway.css' rel='stylesheet' type='text/css'>
 
-    
   </head>
   <body>
     <center>
@@ -39,6 +39,10 @@
         <div class='b-img'>
           <img src='[[obj.image_url]]'>
      
+          <div class='b-chart'>
+            <canvas></canvas>
+          </div>
+          
           <div class='b-count'>
             [[ obj.current_count ]]
           </div>
@@ -46,6 +50,7 @@
           <div class='b-name'>
             [[ obj.name ]]
           </div>
+
         </div>
       </div>
     </script>

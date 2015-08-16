@@ -58,7 +58,35 @@
 }
 
 .business-box:hover > .b-img > .b-count {
-    color: rgba(222, 222, 222, 1.0);
+    color: rgba(222, 222, 222, 0.2);
+}
+
+.business-box:hover > .b-img > .b-name {
+    color: rgba(222, 222, 222, 0.2);
+}
+
+.business-box:hover > .b-img > .b-chart {
+    z-index: 1000;
+    visibility: visible;
+}
+
+.business-box > .b-img > .b-chart {
+    visibility: hidden;
+    float:left;
+    position: absolute;
+    bottom: 0px;
+    left: -5px;
+    opacity: 0.6;
+}
+
+.business-box > .b-img > .b-chart > canvas {
+    padding: 0px;
+    margin: 0px;
+    left:0px;
+    bottom: 0px;
+    width: 200px;
+    height: 200px;
+    
 }
 
 #list {
@@ -67,4 +95,12 @@
 }
 
 body {
+}
+
+.b-inner {
+    margin:0px;
+    padding:0px;
+    height: 100%;
+    width: 100%;
+    position: relative;
 }
