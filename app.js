@@ -51,6 +51,8 @@ var update_list = function() {
                 
                 console.log(the_data);
                 console.log(the_labels);
+
+                the_data = the_data.reverse();
                 
                 var data = {
                     labels: the_labels,
