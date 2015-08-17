@@ -41,7 +41,7 @@ var Density = (function() {
     DensityAPI.prototype._fetch_url = function(url, data) {
         var target_url = this.server + url;
 
-        if (url.slice(7) == 'http://') {
+        if (url.slice(4) == 'http') {
             target_url = url;
         }
 
@@ -72,5 +72,63 @@ var Density = (function() {
         return this._fetch_url('/v1/locations/' + location_id + '/events/', options);
     };
 
-    return DensityAPI;
+    /* Lets make things easier. */
+
+    var LocationProxy = function(location_id, api) {
+        this.location_id = location_id;
+        this.api = api;
+        
+        this.data = {};
+        this.data.count = 0;
+        this.data.meta = {};
+        this.data.events = {};
+
+        this.listeners = [];
+    };
+
+    LocationProxy.prototype.on_update = function(cb) {
+        this.listeners.push(cb);
+    };
+
+    LocationProxy.prototype.fire_update = function() {
+        var new_listeners = [];
+        
+        for(var i = 0; i < this.listeners.length; i++) {
+            cb = this.listeners[i];
+
+            // If the result evals to true, lets keep it around.
+            var result = null;
+
+            try {
+                result = cb(this);
+            } catch (e) {
+                result = false;
+            }
+
+            if (result) {
+                new_listeners.push(cb);
+            }
+        }
+
+        // replace old listener list with new one.
+        this.listeners = new_listeners
+    };
+
+    // This should be replaced with some sort of poll/webhook at some point.
+    LocationProxy.prototype.update = function() {
+        var _this = this;
+        this.api.count(this.location_id, {}).done(function(response_obj, data) {
+            if (_this.data.count == data.count) {
+                // no change so lets not do anything.
+            } else {
+                _this.data.count = data.count;
+                _this.fire_update();
+            }
+        });
+    }
+
+    return {
+        'DensityAPI':DensityAPI,
+        'LocationProxy':LocationProxy
+    };
 })();

@@ -7,7 +7,7 @@
     <script src='app.js'></script>
     <link rel="stylesheet" type="text/css" href="main.css" />
     <link href='https://pulled.site44.com/static/fonts/Raleway.css' rel='stylesheet' type='text/css'>
-
+    
   </head>
   <body>
     <center>
@@ -37,18 +37,18 @@
      [^ expose ["obj"] ^]
       <div class='business-box'>
         <div class='b-img'>
-          <img src='[[obj.image_url]]'>
+          <img src='[[obj.meta.image_url]]'>
      
           <div class='b-chart'>
             <canvas></canvas>
           </div>
           
           <div class='b-count'>
-            [[ obj.current_count ]]
+            [[ obj.count ]]
           </div>
         
           <div class='b-name'>
-            [[ obj.name ]]
+            [[ obj.meta.name ]]
           </div>
 
         </div>
