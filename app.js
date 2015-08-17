@@ -14,11 +14,7 @@ $(document).ready(function() {
             var obj = request.content[i];
             locations[obj.id] = new Density.LocationProxy(obj.id, api);
             locations[obj.id].data.meta = obj;
-            if (i == 4) {
-                locations[obj.id].data.count = 0;
-            } else {
-                locations[obj.id].data.count = obj.current_count;
-            }
+            locations[obj.id].data.count = obj.current_count;
         }
         update_list();
     });
